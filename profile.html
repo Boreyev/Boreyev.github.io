@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ike Callaghan - Profile</title>
+  <link rel="stylesheet" href="profStyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+  <div class="tv-lines"></div>
+  <div class="container">
+    <header class="header">
+      <p class="idroid">Ver 1.01 | <span id="current-page">Profile</span></p>
+    </header>
+    <main class="content">
+      <aside class="sidebar">
+        <img src="447733085_1127116671889880_8234535225915902575_n.jpg" alt="Profile Picture of Ike Callaghan" class="profile-pic">
+        <h1 class="name">Ike Callaghan</h1>
+        <p class="company">Radiola</p>
+        <ul class="sections-list">
+          <li class="section-item" data-page="profile">Profile</li>
+          <li class="section-item" data-page="credentials">Credentials</li>
+          <li class="section-item" data-page="languages">Languages</li>
+          <li class="section-item" data-page="cv">CV</li>
+          <li class="section-item" data-page="personal">Personal</li>
+        </ul>
+      </aside>
+      <div class="profile">
+        <div id="profile-page" class="page">
+          <h1>Profile</h1>
+          <p class="status">IT Professional | GIS Specialist</p>
+          <ul class="info-list">
+            <li><strong>Age:</strong> <span id="age"></span></li>
+            <li><strong>Nationality:</strong> New Zealand</li>
+          </ul>
+          <h2>About</h2>
+          <p>A highly versatile and well-rounded individual with a strong technical foundation, linguistic capabilities, and physical conditioning. Experienced in IT systems, geospatial analysis, and open-source intelligence. Combines intellectual pursuits with practical skills, aimed at a career in intelligence, defence, or technology sectors.</p>
+          <h2>Skills</h2>
+          <canvas id="skillsChart"></canvas>
+        </div>
+        <div id="credentials-page" class="page" style="display:none;">
+          <h1>Credentials</h1>
+          <h2>Education</h2>
+          <ul class="education-list">
+            <li>
+              <strong>Bachelor of Information Technology</strong><br>
+              Otago Polytechnic, New Zealand<br>
+              <em>Graduated with Distinction</em>
+            </li>
+            <li>
+              <strong>Graduate Diploma in Science</strong><br>
+              Victoria University, New Zealand<br>
+              <em>Specialization: Geography - GIS</em>
+            </li>
+          </ul>
+          <h2>Certificates</h2>
+          <ul class="certificate-list">
+            <li>OSINT Certification (CISS)</li>
+            <li>First Aid Certificate</li>
+            <li>JLPT: N4</li>
+          </ul>
+          <h2>Licenses</h2>
+          <ul class="license-list">
+            <li><i class="fas fa-car" aria-hidden="true"></i> - Class 1F</li>
+            <li><i class="fas fa-motorcycle" aria-hidden="true"></i> - Class 6L</li>
+          </ul>
+        </div>
+        <div id="languages-page" class="page" style="display:none;">
+          <h1>Languages</h1>
+          <ul class="language-list">
+            <li>
+              <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="Flag of England" class="flag">
+              <strong>English </strong> (Native)
+            </li>
+            <li>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Japan.svg" alt="Flag of Japan" class="flag">
+              <strong>Japanese </strong> (Conversational)
+            </li>
+            <li>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg" alt="Flag of Russia" class="flag">
+              <strong>Russian </strong> (Basic)
+            </li>
+          </ul>
+        </div>
+        <div id="cv-page" class="page" style="display:none;">
+          <h1>CV</h1>
+          <embed src="Ike_Callaghan_CV.pdf" type="application/pdf" width="100%" height="600px" />
+        </div>
+        <div id="personal-page" class="page" style="display:none;">
+          <h1>Personal</h1>
+          <h2>Hobbies</h2>
+          <ul>
+            <li>Reading</li>
+            <li>Hiking</li>
+            <li>Photography</li>
+            <!-- Add more hobbies as needed -->
+          </ul>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="actions">
+        <button aria-label="Download Profile">Download</button>
+        <button aria-label="Contact Profile Owner">Contact</button>
+      </div>
+      <div class="status">Last Updated: August 26, 2024</div>
+    </footer>
+  </div>
+  <script>
+    // Navigation
+    document.querySelectorAll('.section-item').forEach(item => {
+      item.addEventListener('click', function() {
+        document.querySelectorAll('.page').forEach(page => page.style.display = 'none');
+        document.getElementById(this.dataset.page + '-page').style.display = 'block';
+        document.getElementById('current-page').textContent = this.textContent;
+        document.querySelectorAll('.section-item').forEach(i => i.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+
+    // Age calculation
+    function calculateAge(birthDate) {
+      const today = new Date();
+      const birth = new Date(birthDate);
+      let age = today.getFullYear() - birth.getFullYear();
+      const monthDiff = today.getMonth() - birth.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+        age--;
+      }
+      return age;
+    }
+    document.getElementById('age').textContent = calculateAge('2001-03-16');
+
+    // Skills chart
+    const ctx = document.getElementById('skillsChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [
+          '\uf121', // fa-code
+          '\uf279', // fa-map
+          '\uf0eb', // fa-lightbulb
+          '\uf0c0', // fa-users
+          '\uf0ae'  // fa-tasks
+        ],
+        datasets: [{
+          label: 'Skill Level',
+          data: [80, 75, 90, 85, 70],
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 100
+          },
+          y: {
+            ticks: {
+              font: {
+                family: '"Font Awesome 5 Free"',
+                size: 14,
+                weight: 900
+              }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

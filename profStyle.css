@@ -1,0 +1,235 @@
+body {
+    background-color: #1a1a1a;
+    color: #a1c2c7;
+    font-family: sans-serif;
+    font-weight: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.page {
+    display: none;
+  }
+  
+  #profile-page {
+    display: block;
+  }
+  
+  .info-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .info-list li {
+    margin-bottom: 10px;
+  }
+  
+  #skillsChart {
+    max-width: 100%;
+    height: auto;
+  }
+
+
+h1, h2, h3, strong {
+    font-weight: bold;
+}
+
+p, li {
+    font-weight: normal;
+}
+
+.name, .company, .status {
+    font-weight: bold;
+}
+@keyframes moveGrid {
+    from { background-position: 0 0; }
+    to { background-position: 100px 100px; }
+}
+
+.tv-lines {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveGrid 10s linear infinite;
+    z-index: 1;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 1000px;
+    height: 90vh;
+    background-color: rgba(40, 50, 58, 0.75);
+    border: 2px solid #607b82;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    background-color: rgba(40, 50, 58, 0.9);
+    color: #607b82;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 250px;
+    padding: 20px;
+    border-right: 2px solid #607b82;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.profile-pic {
+    width: 180px;
+    height: 180px;
+    border: 2px solid #607b82;
+    margin-bottom: 20px;
+    opacity: .75;
+}
+
+.sections-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.section-item {
+    padding: 8px 10px;
+    border-bottom: 1px solid #607b82;
+    cursor: pointer;
+}
+
+.section-item.selected {
+    background-color: #394b54;
+}
+
+.profile {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.name {
+    font-size: 1.5em;
+    margin: 0 0 10px 0;
+}
+
+.status {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+.languages, .education, .certificates {
+    margin: 20px 0;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(40, 50, 58, 0.9);
+    color: #607b82;
+}
+
+.actions button {
+    background-color: #394b54;
+    color: #a1c2c7;
+    border: 1px solid #607b82;
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.actions button:hover {
+    background-color: #4c5a63;
+}
+
+.company {
+    font-size: 1.1em;
+    color: #36cacf;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.education-list, .language-list, .certificate-list, .license-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.education-list li, .language-list li, .certificate-list li, .license-list li {
+    margin-bottom: 10px;
+}
+
+.flag {
+    width: 20px;
+    height: 15px;
+    margin-right: 8px;
+    filter: grayscale(100%);
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        height: 100vh;
+        max-width: none;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #607b82;
+    }
+
+    .profile {
+        padding: 10px;
+    }
+
+    .header, .footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+.section-item {
+    padding: 8px 10px;
+    border-bottom: 1px solid #607b82;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .section-item:hover {
+    background-color: #394b54;
+  }
+  
+  .section-item.selected {
+    background-color: #394b54;
+  }
